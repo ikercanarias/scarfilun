@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ 
+   	<bean id="penyaBo" 
+         class="com.scarfilun.penya.bo.impl.PenyaBoImpl" >
+   		<property name="penyaDao" ref="penyaDao" />
+   	</bean>
+ 
+   	<bean id="penyaDao" 
+         class="com.scarfilun.penya.dao.impl.PenyaDaoImpl" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   	</bean>
+ 
+</beans>

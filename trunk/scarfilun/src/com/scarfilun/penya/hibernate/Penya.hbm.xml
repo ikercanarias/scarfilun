@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25-feb-2012 15:52:22 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.scarfilun.penya.model.Penya" table="penya" catalog="atclub">
+        <composite-id name="id" class="com.scarfilun.penya.model.PenyaId">
+            <key-property name="id" type="int">
+                <column name="ID" />
+            </key-property>
+            <key-property name="idEquipo" type="int">
+                <column name="ID_EQUIPO" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="equipo" class="com.scarfilun.equipo.model.Equipo" update="false" insert="false" fetch="select">
+            <column name="ID_EQUIPO" not-null="true"/>
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="DIRECCION" length="500" />
+        </property>
+        <property name="lugarIdentificador" type="string">
+            <column name="LUGAR_IDENTIFICADOR" not-null="true" />
+        </property>
+        <property name="fechaFundacion" type="string">
+            <column name="FECHA_FUNDACION" length="25" />
+        </property>
+        <property name="personaContacto" type="string">
+            <column name="PERSONA_CONTACTO" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="TELEFONO" length="50" />
+        </property>
+        <property name="fax" type="string">
+            <column name="FAX" length="50" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" />
+        </property>
+        <property name="web" type="string">
+            <column name="WEB" length="500" />
+        </property>
+        <property name="numMiembros" type="string">
+            <column name="NUM_MIEMBROS" length="50" />
+        </property>
+        <property name="numSocios" type="string">
+            <column name="NUM_SOCIOS" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

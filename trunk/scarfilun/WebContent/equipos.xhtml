@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+ 	<ui:composition template="/WEB-INF/layout/layout.xhtml">
+    	<ui:define name="title">Equipos</ui:define>
+    	<ui:define name="content">
+	    	 <h:panelGroup layout="block">
+	    		<h2><h:outputLabel value="Mantenimiento de equipos"/></h2>
+	    		<br/>
+		 		<h:form>
+			 		<p:dataTable var="c" value="#{equipo.equipoList}">  
+				        <p:column>
+			    			<f:facet name="header">
+			    				ID
+			    			</f:facet>
+			    			<h:outputText value="#{c.id}" />
+			    		</p:column>
+			 
+			    		<p:column>
+			    			<f:facet name="header">
+			    				NOMBRE
+							</f:facet>
+			    			<h:outputText value="#{c.nombre}" />	
+			    		</p:column>
+			 
+			 			<p:column>
+			    			<f:facet name="header">
+			    				URL
+							</f:facet>
+			    			<h:outputText value="#{c.url}" />		
+			    		</p:column>
+			    		
+			    		<p:column>
+			    			<f:facet name="header">
+			    				PARSER
+							</f:facet>
+			    			<h:outputText value="#{c.parser}" />
+			    		</p:column>
+			    		
+			    		<p:column>
+			    			<f:facet name="header"></f:facet>
+			    			<h:commandLink action="#{equipo.deleteEquipo(c.id)}" immediate="true">
+								<p:graphicImage width="20" height="20" value="css/images/clear.gif" />
+							</h:commandLink>						
+			    		</p:column>
+				    </p:dataTable>  
+			
+			 		<h2><h:outputLabel value="Nuevo Equipo"/></h2>
+		 		
+		 			<h:panelGrid id="grid" columns="3">
+		 				<h:outputLabel value="Nombre: *"/>
+						<p:inputText id="nombre" value="#{equipo.nombre}" required="true" label="Nombre"/>
+						<p:message id="nombreoutput" for="nombre" display="text" />
+						
+						<h:outputLabel value="Url: *"/>
+						<p:inputText id="url" value="#{equipo.url}" required="true" size="30" label="Url"/>
+						<p:message id="urloutput" for="url" display="text" />
+						
+						<h:outputLabel value="Parser: *"/>
+						<p:inputText id="parser" value="#{equipo.parser}" required="true" size="30" label="Parser"/>
+						<p:message id="parseroutput" for="parser" display="text" />
+					</h:panelGrid>
+					
+					<h:commandButton class="button" value="Guardar" action="#{equipo.addEquipo}" />
+		
+		 		</h:form>				
+		 	</h:panelGroup>
+	    </ui:define>
+	</ui:composition>
+</html>
