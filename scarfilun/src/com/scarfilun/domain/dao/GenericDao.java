@@ -25,5 +25,6 @@ public interface GenericDao<T extends AbstractEntity, PK extends Serializable> {
     List<T> getByCriteria(Criterion... criteria) throws DaoException;
 
     List<T> getByCriteria(Criterion[] criteria, Order... order) throws DaoException;
+    
 
 }
