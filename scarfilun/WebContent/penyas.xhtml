@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+ 	<ui:composition template="/WEB-INF/layout/layout.xhtml">
+    	<ui:define name="title">Peñas</ui:define>
+    	<ui:define name="content">
+	    	 <h:panelGroup layout="block">
+	    		<h2><h:outputLabel value="Listado de peñas"/></h2>
+	    		<br/>
+	    		
+	    		<h:form id="menuEquiposForm">
+		    		<div id="menu-equipos">
+		    			<ul>
+		    				<ui:repeat var="equipo" value="#{equipo.equipoList}" varStatus="status">
+		    					<li>
+									<p:commandLink  action="#{penya.setSelectedEquipo(equipo.id)}" update="penyasDataTable">
+										<p:graphicImage alt="equipo.nombre" value="/images/escudos_peq/#{equipo.imagen}" />
+									</p:commandLink>
+								</li>
+							</ui:repeat>
+		    			</ul>
+					</div>
+				</h:form>
+					<br/>
+					<br/>
+				<h:form id="form" prependId="false">
+			 		<p:dataTable id="penyasDataTable"  var="c" value="#{penya.penyaList}"
+			 			paginator="true" rows="10"  
+                 		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                 		rowsPerPageTemplate="5,10,15">
+                 		  
+			    		<p:column>
+			    			<f:facet name="header">
+			    				NOMBRE
+							</f:facet>
+			    			<h:outputText value="#{c.nombre}" />	
+			    		</p:column>
+			 
+			 			<p:column>
+			    			<f:facet name="header">
+			    				Direccion
+							</f:facet>
+			    			<h:outputText value="#{c.direccion}" />		
+			    		</p:column>
+			    		
+			    		<p:column>
+			    			<f:facet name="header">
+			    				Teléfono
+							</f:facet>
+			    			<h:outputText value="#{c.telefono}" />
+			    		</p:column>
+				    </p:dataTable>  
+		 		</h:form>				
+		 	</h:panelGroup>
+	    </ui:define>
+	</ui:composition>
+</html>

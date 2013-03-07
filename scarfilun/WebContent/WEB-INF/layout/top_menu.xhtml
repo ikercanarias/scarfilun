@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<h:panelGroup layout="block" id="menu" xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core">
+    <h:form>
+        <ul>
+            <li class="first"><h:outputLink value="index.html">Home</h:outputLink></li>
+            <li><h:outputLink value="about.html">Acerda de</h:outputLink></li>
+            <li><h:outputLink value="jugadores.html">Jugadores</h:outputLink></li>
+            <li><h:outputLink value="equipos.html">Equipos</h:outputLink></li>
+            <li><h:outputLink value="penyas.html">Peñas</h:outputLink></li>
+            <li><h:outputLink value="contact.html">Contacto</h:outputLink></li>
+            <h:panelGroup rendered="#{authController.user == null}">
+            	<li><h:outputLink value="login.html">Login</h:outputLink></li>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{authController.user != null}">
+            	<li><h:commandLink action="#{authController.logout}">Logout</h:commandLink></li>
+            </h:panelGroup>
+        </ul>
+        
+        <div class="language">
+	        <h:panelGrid columns="2">
+        		
+					<h1>Cambiar idioma: </h1>
+					<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+						valueChangeListener="#{language.countryLocaleCodeChanged}">
+			 					<f:selectItems value="#{language.countriesInMap}" /> 
+			 		</h:selectOneMenu>
+			</h:panelGrid>
+		</div>
+			
+    </h:form>
+</h:panelGroup>

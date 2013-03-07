@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+ 	<ui:composition template="/WEB-INF/layout/layout.xhtml">
+    	<ui:define name="title">Jugadores</ui:define>
+    	<ui:define name="content">
+	    	 <h:panelGroup layout="block">
+	    		<h2><h:outputLabel value="Mantenimiento de jugadores"/></h2>
+	    		<br/>
+		 		<h:form>
+			 		<p:dataTable var="c" value="#{jugador.jugadorList}">  
+				        <p:column>
+			    			<f:facet name="header">
+			    				ID
+			    			</f:facet>
+			    			<h:outputText value="#{c.id}" />
+			    		</p:column>
+			 
+			    		<p:column>
+			    			<f:facet name="header">
+			    				NOMBRE
+							</f:facet>
+			    			<h:outputText value="#{c.nombre}" />	
+			    		</p:column>
+			 
+			 			<p:column>
+			    			<f:facet name="header">
+			    				DESCRIPCION
+							</f:facet>
+			    			<h:outputText value="#{c.descripcion}" />		
+			    		</p:column>
+			    		
+			    		<p:column>
+			    			<f:facet name="header">
+			    				FOTO
+							</f:facet>
+							<p:graphicImage width="50" height="50" value="#{dynamicImageController.graphicText}" cache="false">
+								 <f:param name="imageID" value="#{c.id}" />
+							</p:graphicImage>						
+			    		</p:column>
+			    		
+			    		<p:column>
+			    			<f:facet name="header"></f:facet>
+			    			<h:commandLink action="#{jugador.deleteJugador(c.id)}" immediate="true">
+								<p:graphicImage width="20" height="20" value="css/images/clear.gif" />
+							</h:commandLink>						
+			    		</p:column>
+				    </p:dataTable>  
+			
+			 		<h2><h:outputLabel value="Nuevo Jugador"/></h2>
+		 		
+		 			<h:panelGrid id="grid" columns="3">
+		 				<h:outputLabel value="Nombre: *"/>
+						<p:inputText id="nombre" value="#{jugador.nombre}" required="true" label="Nombre"/>
+						<p:message id="nombreoutput" for="nombre" display="text" />						
+						
+						<h:outputLabel value="Descripcion: *"/>
+						<p:inputText id="descripcion" value="#{jugador.descripcion}" required="true" size="30" label="Descripcion"/>
+						<p:message id="descripcionoutput" for="descripcion" display="text" />		
+					</h:panelGrid>
+					
+					<h:commandButton class="button" value="Guardar" action="#{jugador.addJugador}" />
+		
+		 		</h:form>
+		 		
+		 		<br/>
+		 		<br/>
+		 		
+				<h:form enctype="multipart/form-data" prependId="false">
+			 		<h:panelGrid id="gridFile" columns="1">
+				 		  <h:outputText value="Selecciona la imágen (max. 2MB):"/>
+						  <p:fileUpload update="uploadMessages"   
+						                fileUploadListener="#{dynamicImageController.handleFileUpload}" 
+						                sizeLimit="2097152" 
+						                multiple="false" 
+						                label="Subir" 
+						                allowTypes="*.jpg;" 
+						                description="Images"/>
+					</h:panelGrid>
+				</h:form>
+				
+		 	</h:panelGroup>
+	    </ui:define>
+	</ui:composition>
+</html>

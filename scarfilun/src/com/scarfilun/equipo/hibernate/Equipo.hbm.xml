@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-nov-2011 13:04:17 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.scarfilun.equipo.model.Equipo" table="equipo" catalog="atclub">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" not-null="true" />
+        </property>
+        <property name="url" type="string">
+            <column name="URL" length="500" not-null="true" />
+        </property>
+        <property name="parser" type="string">
+            <column name="PARSER" length="500" not-null="true" />
+        </property>
+        <property name="imagen" type="string">
+            <column name="IMAGEN" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

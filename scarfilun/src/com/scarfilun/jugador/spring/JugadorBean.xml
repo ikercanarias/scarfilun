@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ 
+   	<bean id="jugadorBo" 
+         class="com.scarfilun.jugador.bo.impl.JugadorBoImpl" >
+   		<property name="jugadorDao" ref="jugadorDao" />
+   	</bean>
+ 
+   	<bean id="jugadorDao" 
+         class="com.scarfilun.jugador.dao.impl.JugadorDaoImpl" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   	</bean>
+ 
+</beans>
