@@ -20,7 +20,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	
 	<bean id="mailService" class="com.scarfilun.mail.MailService">
 		<property name="mailSender" ref="mailSender" />
-		<property name="from" value="atclub@atclub.com" />
+		<property name="from" value="soporte@scarfilun.com" />
 		<property name="to" value="mdiss.deusto@gmail.com" />
 	</bean>
 </beans>

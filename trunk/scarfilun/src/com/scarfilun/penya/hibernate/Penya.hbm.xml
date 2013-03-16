@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 25-feb-2012 15:52:22 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.scarfilun.penya.model.Penya" table="penya" catalog="atclub">
+    <class name="com.scarfilun.penya.model.Penya" table="penya" catalog="scarfilun">
         <composite-id name="id" class="com.scarfilun.penya.model.PenyaId">
             <key-property name="id" type="int">
                 <column name="ID" />

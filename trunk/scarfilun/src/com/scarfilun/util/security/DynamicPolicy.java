@@ -21,7 +21,7 @@ public class DynamicPolicy extends Policy implements InitializingBean {
         PermissionCollection pc = deferredPolicy.getPermissions(domain);
         String location = domain.getCodeSource().getLocation().toString();
 //        System.out.println(location+" ->> "+domain.getPrincipals().length);
-        if (location.indexOf("atclub") > 0) {
+        if (location.indexOf("scarfilun") > 0) {
             if (!pc.isReadOnly()) {
                 for (Principal p : domain.getPrincipals()) {
                     Role role = (Role) p;
