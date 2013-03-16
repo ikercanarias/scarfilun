@@ -90,8 +90,8 @@ public class AuthenticationController implements Serializable {
     	
         Subject subject = SecurityUtil.getSubject();
         Configuration conf = new LoginConfiguration(userService, user);
-        return new LoginContext("atclub", subject, new HttpCallbackHandler(userName, password), conf);
-    	//return new LoginContext("atclub", new HttpCallbackHandler(userName, password));
+        return new LoginContext("scarfilun", subject, new HttpCallbackHandler(userName, password), conf);
+    	//return new LoginContext("scarfilun", new HttpCallbackHandler(userName, password));
     }
 
     private void redirectIfNecessary() {
