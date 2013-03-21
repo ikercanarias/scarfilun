@@ -16,7 +16,7 @@ public class LanguageBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private String localeCode;
+	private String localeCode = "es";
 
 	private static Map<String,Object> countries;
 	static{
