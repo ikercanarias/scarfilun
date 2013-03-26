@@ -9,40 +9,25 @@
 <ui:composition template="/WEB-INF/layout/layout.xhtml">
   <ui:define name="title">Login Page</ui:define>
   <ui:define name="content">
-  	 <h2>Login</h2>
-     <br/>
-     <h:outputText value="Indentifícate con tu usuario y contraseña: " />
-     <br/>
-     <br/>
-     <h:form>
-     	<table>
-            <tr>
-                <td>
-                    <h:outputLabel value="Usuario: *"/>
-                </td>
-                <td>
-                	<p:inputText id="username" value="#{authController.userName}" label="Usuario" required="true"/>
-                </td>
-                <td>
-                     <p:message id="usernameoutput" for="username" display="text" /> 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h:outputLabel value="Contraseña: *"/>
-                </td>
-                <td>
-                	 <p:password id="password" value="#{authController.password}" label="Contraseña" promptLabel="Introduce tu contraseña, por favor." weakLabel="Contraseña"  
-                        goodLabel="Contraseña" strongLabel="Contraseña" required="true" /> 
-                    <br/>
-               </td>
-               <td>
-                     <p:message id="passwordoutput" for="password" display="text" /> 
-                </td>
-            </tr>
-        </table>
+  		<h:panelGroup layout="block">
+			<h2>Login</h2>
+			<br/>
+			<h:outputText value="Indentifícate con tu usuario y contraseña: " />
+     		<br/>
+     		<h:form>
+	     		<h:panelGrid id="grid" columns="3">
+					<h:outputLabel value="Usuario: *"/>
+					<p:inputText id="username" value="#{authController.userName}" label="Usuario" required="true"/>
+					<p:message id="usernameoutput" for="username" display="text" /> 
+	
+					<h:outputLabel value="Contraseña: *"/>
+					<p:password id="password" value="#{authController.password}" label="Contraseña" promptLabel="Introduce tu contraseña, por favor." weakLabel="Contraseña" goodLabel="Contraseña" strongLabel="Contraseña" required="true" />
+					<p:message id="passwordoutput" for="password" display="text" />
+				</h:panelGrid>
+			 </h:form>
+		</h:panelGroup>
         <h:commandButton class="button" value="Acceder" action="#{authController.login}"/>
-    </h:form>
+  
 </ui:define>
 </ui:composition>
 </html>
