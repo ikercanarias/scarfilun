@@ -20,7 +20,7 @@
 		    			<ul>
 		    				<ui:repeat var="equipo" value="#{equipo.equipoList}" varStatus="status">
 		    					<li>
-									<p:commandLink  action="#{penya.setSelectedEquipo(equipo.id)}" update="penyasDataTable">
+									<p:commandLink  action="#{penya.setSelectedEquipo(equipo.id)}" update=":form:penyasDataTable">
 										<p:graphicImage alt="equipo.nombre" value="/images/escudos_peq/#{equipo.imagen}" />
 									</p:commandLink>
 								</li>
