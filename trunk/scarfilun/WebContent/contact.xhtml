@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+        
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -10,7 +10,7 @@
 <ui:composition template="/WEB-INF/layout/layout.xhtml">
     <ui:define name="title">Contacto</ui:define>
     <ui:define name="content">
-        <h:panelGroup layout="block">
+        <h:panelGroup layout="block" rendered="#{authController.user.hasRole('admin')}">
         	<h2><h:outputLabel value="Contacto"/></h2>
 			<br/>
 			<p>Esta es la página de contacto. Puedes enviarnos un correo con tus sugerencias.</p>
@@ -24,8 +24,8 @@
 					<p:inputText id="msgtext" value="#{mailService.text}" required="true" size="30" label="Mensaje"/>
 					<p:message id="msgoutput" for="msgtext" display="text" />		
 				</h:panelGrid>
-					
-			 	<h:commandButton class="button" value="Enviar" action="#{mailService.sendMail}"/>
+
+			 	<h:commandButton class="button" value="Enviar" action="#{mailService.sendMail}"  />
 			 </h:form>
         </h:panelGroup>
     </ui:define>
