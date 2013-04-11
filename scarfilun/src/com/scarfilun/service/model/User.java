@@ -72,4 +72,23 @@ public class User implements Serializable {
     public void addRole(Role role){
         this.roles.add(role);
     }
+    
+    public boolean hasRole(String... roleParam) {
+    	
+    	boolean hasRole = false;
+    	
+    	for (Role role : roles) {
+    		for (String currentRole : roleParam) {
+    			if (role.getName().equalsIgnoreCase(currentRole)) {
+        			hasRole = true;
+        			break;
+        		}
+    		}
+    		if (hasRole) {
+    			break;
+    		}
+    	}
+    	
+    	return hasRole;
+    }
 }
