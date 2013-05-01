@@ -76,6 +76,26 @@ a:hover
 	color: #E0E8EF;
 }
 
+
+#header a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#header a:hover
+{
+	text-decoration: underline;
+}
+
+.capaLogin
+{
+	color: #FFFFFF;
+    font-family: Arial,sans-serif;
+    font-size: 9pt;
+    margin-right: 2em;
+    float:right;
+}
+
 /* Menu */
 
 #menu

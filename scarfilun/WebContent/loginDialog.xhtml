@@ -1,0 +1,64 @@
+<h:panelGroup layout="block" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<script type="text/javascript">  
+	    function handleLoginRequest(xhr, status, args) {  
+	        if(args.validationFailed || !args.loggedIn) {  
+	            dlg.jq.effect("shake", { times:5 }, 100);  
+	        }   
+	        else {  
+	            dlg.hide();
+	        }  
+	    }  
+	</script>
+
+	<h:form id="form">
+		<h:panelGroup id="panelLogin" styleClass="capaLogin">
+			<h:outputLink id="loginLink" value="javascript:void(0);"
+				onclick="dlg.show()" title="login"
+				rendered="#{authController.user == null}">
+				<h:outputText value="#{msg['header.loginLink']}" />
+			</h:outputLink>
+			<h:outputLink value="javascript:void(0);" id="registerLink"
+				rendered="#{authController.user == null}">
+		    	- <h:outputText value="#{msg['header.registerLink']}" />
+			</h:outputLink>
+		</h:panelGroup>
+
+		<h:panelGroup id="panelLogout" styleClass="capaLogin">
+			<h:commandLink immediate="true" action="#{authController.logout}"
+				rendered="#{authController.user != null}">
+				<h:outputText value="#{msg['header.logout']}" />
+			</h:commandLink>
+		</h:panelGroup>
+
+		<p:growl id="growl" showDetail="true" life="3000" />
+
+		<p:dialog modal="true" id="dialog" header="Login" widgetVar="dlg"
+			resizable="false">
+
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="username" value="Username:" />
+				<p:inputText id="username" value="#{authController.userName}"
+					label="Usuario" required="true" />
+
+				<h:outputLabel for="password" value="Password:" />
+				<h:inputSecret value="#{authController.password}" id="password"
+					required="true" label="password" />
+
+				<f:facet name="footer">
+					<p:commandButton id="loginButton" value="#{msg['boton.aceptar']}"
+						update="growl, panelLogin, panelLogout"
+						actionListener="#{authController.login}"
+						oncomplete="handleLoginRequest(xhr, status, args)" />
+					<p:commandButton id="cancelButton" value="#{msg['boton.cancelar']}"
+						onclick="javascript:dlg.hide();" />
+				</f:facet>
+			</h:panelGrid>
+
+		</p:dialog>
+	</h:form>
+</h:panelGroup>

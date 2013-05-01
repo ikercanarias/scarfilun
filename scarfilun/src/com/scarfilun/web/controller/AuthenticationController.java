@@ -1,5 +1,6 @@
 package com.scarfilun.web.controller;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -10,6 +11,8 @@ import javax.security.auth.Subject;
 import javax.security.auth.login.Configuration;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
+
+import org.primefaces.context.RequestContext;
 
 import com.scarfilun.service.UserService;
 import com.scarfilun.service.model.User;
@@ -70,11 +73,27 @@ public class AuthenticationController implements Serializable {
     }
 
     public String login() throws LoginException {
+    	 	
         LoginContext loginContext = createLoginContext();
-        loginContext.login();
-        Subject subject = SecurityUtil.getSubject();
-        user = (User) subject.getPublicCredentials().iterator().next();
-        redirectIfNecessary();
+        RequestContext context = RequestContext.getCurrentInstance();  
+        FacesMessage msg = null;  
+        
+        try {
+        	loginContext.login();
+        	 Subject subject = SecurityUtil.getSubject();
+             user = (User) subject.getPublicCredentials().iterator().next();
+             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido ", user.getFirstName());  
+             FacesContext.getCurrentInstance().addMessage(null, msg);  
+             context.addCallbackParam("loggedIn", true); 
+             
+        }catch (LoginException le) {
+        	msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Usuario o contraseña incorrectos.");  
+        	FacesContext.getCurrentInstance().addMessage(null, msg);  
+            context.addCallbackParam("loggedIn", false); 
+        }
+    
+        //redirectIfNecessary();
+        
         return "login_success";
     }
 
